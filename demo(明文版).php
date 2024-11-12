@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>encrypt靶场</title>
-  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.0.0/crypto-js.min.js"></script> <!-- 引入 CryptoJS 库 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0/jsencrypt.min.js"></script> <!-- 引入 JSEncrypt 库 -->
+  <script src="js/crypto-js.min.js"></script> <!-- 引入 CryptoJS 库 -->
+  <script src="js/jsencrypt.min.js"></script> <!-- 引入 JSEncrypt 库 -->
 
   <link rel="stylesheet" href="css/index.css"> <!-- 引入本地的 CSS 文件 -->
   <style>
@@ -64,6 +64,31 @@
 
     .modal-content button:last-child:hover {
       background-color: #c8c8c8; /* “取消”按钮悬停时颜色变化 */
+    }
+    /* 归属栏样式 */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      font-size: 15px;
+      color: rgba(0, 0, 0, 0.5); /* 更轻的灰色，使文字不显得突兀 */
+      background: rgba(255, 255, 255, 0.4); /* 轻透明白色，融入页面背景 */
+      backdrop-filter: blur(3px); /* 模糊效果，让背景更加柔和 */
+      border-top: 1px solid rgba(255, 255, 255, 0.2); /* 顶部细分隔线 */
+    }
+    
+    footer a {
+      color: #66b2ff; /* 柔和的蓝色 */
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    footer a:hover {
+      color: #3399ff; /* 悬停时稍加深 */
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -154,7 +179,7 @@
         // 处理后端返回的 JSON 响应
         if (data.success) {
           alert("登录成功");
-          window.location.href = "dashboard.php";
+          window.location.href = "success.html";
         } else {
           alert("用户名或密码错误");
         }
@@ -209,7 +234,7 @@ ocDbsNeCwNpRxwjIdQIDAQAB
   .then(data => {
     if (data.success) {
       alert("登录成功");
-      window.location.href = "dashboard.php";
+      window.location.href = "success.html";
     } else {
       alert(data.error || "用户名或密码错误");
     }
@@ -265,7 +290,7 @@ ocDbsNeCwNpRxwjIdQIDAQAB
       .then(data => {
         if (data.success) {
           alert("登录成功");
-          window.location.href = "dashboard.php";
+          window.location.href = "success.html";
         } else {
           alert("用户名或密码错误");
         }
@@ -315,7 +340,7 @@ ocDbsNeCwNpRxwjIdQIDAQAB
       .then(data => {
         if (data.success) {
           alert("登录成功");
-          window.location.href = "dashboard.php";
+          window.location.href = "success.html";
         } else {
           alert("用户名或密码错误");
         }
@@ -357,7 +382,7 @@ ocDbsNeCwNpRxwjIdQIDAQAB
   .then(data => {
     if (data.success) {
       alert("登录成功");
-      window.location.href = "dashboard.php";
+      window.location.href = "success.html";
     } else {
       alert("用户名或密码错误");
     }
@@ -400,7 +425,7 @@ ocDbsNeCwNpRxwjIdQIDAQAB
   .then(data => {
     if (data.success) {
       alert("登录成功");
-      window.location.href = "dashboard.php";
+      window.location.href = "success.html";
     } else {
       alert(data.error || "用户名或密码错误");
     }
@@ -461,7 +486,7 @@ ocDbsNeCwNpRxwjIdQIDAQAB
         
         if (signatureValid) {
           alert("签名验证成功，登录成功");
-          window.location.href = "dashboard.php";
+          window.location.href = "success.html";
         } else {
           alert("签名验证失败，数据可能被篡改");
         }
@@ -495,5 +520,8 @@ ocDbsNeCwNpRxwjIdQIDAQAB
       document.getElementById("modal").style.display = "none";
     }
   </script>
+    <footer>
+    本靶场由 <a href="https://github.com/SwagXz/encrypt-labs" target="_blank">Xz</a> 编写
+  </footer>
 </body>
 </html>
