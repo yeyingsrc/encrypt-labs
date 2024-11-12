@@ -8,7 +8,6 @@ js代码做了混淆，感觉较难分析的可以使用demo(明文版).php进�
   
 - 配合其他的github项目和文章进行练习<br>
 
-- 点个star⭐️在看呗
 
 **工具脚本**
   
@@ -44,6 +43,9 @@ js代码做了混淆，感觉较难分析的可以使用demo(明文版).php进�
 ### 签名的方式
 <img width="1155" alt="image" src="https://github.com/user-attachments/assets/c88b41f4-075b-4eae-8a1c-4b57a27c6370">
 
+
+## 🔯 Stars
+[![Stargazers over time](https://starchart.cc/SwagXz/encrypt-labs.svg?variant=adaptive)](https://starchart.cc/SwagXz/encrypt-labs)
 
 
 
