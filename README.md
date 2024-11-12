@@ -13,7 +13,7 @@ http://82.156.57.228:43899/easy.php （无混淆）
 
 ## 食用方式:
 
-Nginx+mysl+php8+放在网站路径即可食用
+Nginx+mysql+php8放在网站路径即可食用
 
 
 配合其他的github项目和文章进行练习<br>
