@@ -42,6 +42,5 @@ js代码做了混淆，感觉较难分析的可以使用demo(明文版).php进�
 <img width="1155" alt="image" src="https://github.com/user-attachments/assets/c88b41f4-075b-4eae-8a1c-4b57a27c6370">
 
 
-可以配合一些加密插件进行测试
 
 
