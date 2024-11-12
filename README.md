@@ -31,6 +31,7 @@ http://82.156.57.228:43899/easy.php （无混淆）
 [保姆级教程--前端加密的对抗（附带靶场）](https://mp.weixin.qq.com/s/_WdQlH6AKma8zYq73Ub7ag)
 
 <img width="1508" alt="image" src="https://github.com/user-attachments/assets/c7c20268-9eb3-4431-b7c1-712710b4ac60">
+
 ## 主要分为对称加密、非对称加密和加签的方式
 
 <img width="1262" alt="image" src="https://github.com/user-attachments/assets/5fb8a258-8500-42fa-9410-9311f59b2583">
