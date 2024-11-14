@@ -41,7 +41,7 @@ Nginx+mysql+php8放在网站路径即可食用
 
 ## 主要分为对称加密、非对称加密和加签的方式
 
-<img width="1262" alt="image" src="https://github.com/user-attachments/assets/5fb8a258-8500-42fa-9410-9311f59b2583">
+<img width="1502" alt="image" src="https://github.com/user-attachments/assets/f72feb26-03d2-423f-a9e2-6136a83698d1">
 
 ## 列举几个数据包中的图
 ### AES
@@ -55,6 +55,9 @@ Nginx+mysql+php8放在网站路径即可食用
 
 ### 签名的方式
 <img width="1155" alt="image" src="https://github.com/user-attachments/assets/c88b41f4-075b-4eae-8a1c-4b57a27c6370">
+
+### 禁止重放
+<img width="1165" alt="image" src="https://github.com/user-attachments/assets/443ce3d9-11c8-4937-966a-eb91f6840606">
 
 
 ## 🔯 Stars
