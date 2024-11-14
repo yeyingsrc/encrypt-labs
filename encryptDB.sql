@@ -1,27 +1,40 @@
--- MySQL dump 10.13  Distrib 5.7.44, for Linux (x86_64)
---
--- Host: localhost    Database: encryptDB
--- ------------------------------------------------------
--- Server version	5.7.44-log
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `users`
---
+ Date: 14/11/2024 09:55:31
+*/
 
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for requests
+-- ----------------------------
+DROP TABLE IF EXISTS `requests`;
+CREATE TABLE `requests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `requestID` varchar(255) NOT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `requestID` (`requestID`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of requests
+-- ----------------------------
+BEGIN;
+INSERT INTO `requests` (`id`, `requestID`, `timestamp`) VALUES (1, 'req-1731491882251-i7e8efqibge', '2024-11-13 17:58:02');
+INSERT INTO `requests` (`id`, `requestID`, `timestamp`) VALUES (2, 'req-1731491882251-ddi7e8efqibge', '2024-11-13 17:58:18');
+INSERT INTO `requests` (`id`, `requestID`, `timestamp`) VALUES (3, 'c1b25e5355144b891bf26a9786d498454fa46878a5b32b5114dd3661f9e2d2ca', '2024-11-13 18:06:39');
+INSERT INTO `requests` (`id`, `requestID`, `timestamp`) VALUES (4, '84eca016bdf30025222bf0e100ab5ba4e4d764c62325195c8529f45d223c58e6', '2024-11-13 18:06:47');
+INSERT INTO `requests` (`id`, `requestID`, `timestamp`) VALUES (5, '2ee9c5f28763a90a01171d07e5dc5101df0b01bd6588b9237332d9a3d4504bc0', '2024-11-13 18:06:49');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
@@ -32,33 +45,12 @@ CREATE TABLE `users` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `users`
---
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+BEGIN;
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES (2, 'admin', 'admin@example.com', 'e10adc3949ba59abbe56e057f20f883e', '2024-11-11 17:24:10');
+COMMIT;
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'admin','admin@example.com','e10adc3949ba59abbe56e057f20f883e','2024-11-11 09:24:10');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'encryptDB'
---
-
---
--- Dumping routines for database 'encryptDB'
---
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-11-12 15:12:09
+SET FOREIGN_KEY_CHECKS = 1;
