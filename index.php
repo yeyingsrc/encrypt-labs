@@ -126,14 +126,15 @@
   <div id="modal" class="modal">
     <div class="modal-content">
       <p>选择数据发送接口:</p>
-      <button onclick="z('encrypt/aes.php')">AES固定Key</button>
+      <button onclick="sendDataAes('encrypt/aes.php')">AES固定Key</button>
       <!--<button onclick="sendData('encrypt/other.php')">AES随机Key</button>-->
-      <button onclick="m('encrypt/aesserver.php')">AES服务端获取Key</button>
-      <button onclick="a('encrypt/rsa.php')">Rsa加密</button>
-      <button onclick="c('encrypt/aesrsa.php')">AES+Rsa加密</button>
-      <button onclick="g('encrypt/des.php')">Des规律Key</button>
-      <button onclick="p('encrypt/signdata.php')">明文加签</button>
-      <button onclick="y('encrypt/signdataRsa.php')">明文Rsa加签</button>
+      <button onclick="fetchAndSendDataAes('encrypt/aesserver.php')">AES服务端获取Key</button>
+      <button onclick="sendEncryptedDataRSA('encrypt/rsa.php')">Rsa加密</button>
+      <button onclick="sendDataAesRsa('encrypt/aesrsa.php')">AES+Rsa加密</button>
+      <button onclick="encryptAndSendDataDES('encrypt/des.php')">Des规律Key</button>
+      <button onclick="sendDataWithNonce('encrypt/signdata.php')">明文加签</button>
+      <button onclick="sendDataWithSignatureRsa('encrypt/signdataRsa.php')">明文Rsa加签</button>
+      <button onclick="sendLoginRequest('encrypt/norepeater.php')">禁止重放</button>
       <button onclick="closeModal()">取消</button>
     </div>
   </div>
