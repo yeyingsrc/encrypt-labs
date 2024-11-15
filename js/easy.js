@@ -30,17 +30,17 @@ function sendDataAes(url) {
 			padding: CryptoJS.pad.Pkcs7
 		})
 		.toString();
+    // 将加密后的数据格式化为查询字符串
+    const params = `encryptedData=${encodeURIComponent(encrypted)}`;
 
 	// 使用 fetch API 发送加密后的数据包到选择的接口
 	fetch(url, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json; charset=utf-8"
+				"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
 
 			},
-			body: JSON.stringify({
-				encryptedData: encrypted
-			})
+			body: params
 		})
 		.then(response => response.json())
 		.then(data => {
@@ -72,45 +72,53 @@ ocDbsNeCwNpRxwjIdQIDAQAB
   `;
 
 	// 获取表单中的用户名和密码
-	const username = document.getElementById("username")
-		.value;
-	const password = document.getElementById("password")
-		.value;
+	const username = document.getElementById("username").value;
+	const password = document.getElementById("password").value;
+
+	// 组织整个数据包
+	const dataPacket = {
+		username: username,
+		password: password
+	};
+
+	// 将数据包转换为 JSON 字符串
+	const dataString = JSON.stringify(dataPacket);
 
 	// 初始化 JSEncrypt 并设置公钥
 	const encryptor = new JSEncrypt();
 	encryptor.setPublicKey(publicKey);
 
-	// 加密用户名和密码
-	const encryptedUsername = encryptor.encrypt(username);
-	const encryptedPassword = encryptor.encrypt(password);
+	// 对整个数据包进行加密
+	const encryptedData = encryptor.encrypt(dataString);
 
-	if (!encryptedUsername || !encryptedPassword) {
+	if (!encryptedData) {
 		alert("加密失败，请检查公钥是否正确");
 		return;
 	}
 
+	// 创建表单格式的请求体数据
+	const formData = new URLSearchParams();
+	formData.append('data', encryptedData); // 将加密后的数据作为一个字段传输
+
 	// 发送加密后的数据到服务器
 	fetch(url, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				username: encryptedUsername,
-				password: encryptedPassword
-			})
-		})
-		.then(response => response.json())
-		.then(data => {
-			if (data.success) {
-				alert("登录成功");
-				window.location.href = "success.html";
-			} else {
-				alert(data.error || "用户名或密码错误");
-			}
-		})
-		.catch(error => console.error("请求错误:", error));
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
+		body: formData.toString()
+	})
+	.then(response => response.json())
+	.then(data => {
+		if (data.success) {
+			alert("登录成功");
+			window.location.href = "success.html";
+		} else {
+			alert(data.error || "用户名或密码错误");
+		}
+	})
+	.catch(error => console.error("请求错误:", error));
+
 	// 关闭弹窗
 	closeModal();
 }
