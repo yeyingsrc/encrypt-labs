@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 require '../database.php';
 session_start();
+
 // 加载 RSA 私钥
 $privateKey = "-----BEGIN RSA PRIVATE KEY-----
 MIICXAIBAAKBgQDRvA7giwinEkaTYllDYCkzujviNH+up0XAKXQot8RixKGpB7nr
@@ -20,42 +21,44 @@ AeussmDIlr+wqWr+iJxYfJHc8ikTRSeTgqavruZs2Hg=
 -----END RSA PRIVATE KEY-----
 ";
 
+// 检查私钥是否加载成功
 if (!$privateKey) {
     echo json_encode(["success" => false, "error" => "服务器私钥加载失败"]);
     exit();
 }
 
-// 解析 POST 数据
-$data = json_decode(file_get_contents("php://input"), true);
+// 解析 POST 数据（application/x-www-form-urlencoded 格式）
+$data = $_POST['data'] ?? null;
 
-if (isset($data['username']) && isset($data['password'])) {
-    $encryptedUsername = $data['username'];
-    $encryptedPassword = $data['password'];
-
-    // 解密用户名
-    if (!openssl_private_decrypt(base64_decode($encryptedUsername), $decryptedUsername, $privateKey)) {
-        echo json_encode(["success" => false, "error" => "用户名解密失败"]);
+if ($data) {
+    // 解密整个加密数据包
+    if (!openssl_private_decrypt(base64_decode($data), $decryptedData, $privateKey)) {
+        echo json_encode(["success" => false, "error" => "数据解密失败"]);
         exit();
     }
 
-    // 解密密码
-    if (!openssl_private_decrypt(base64_decode($encryptedPassword), $decryptedPassword, $privateKey)) {
-        echo json_encode(["success" => false, "error" => "密码解密失败"]);
-        exit();
-    }
+    // 解析解密后的数据包
+    $dataPacket = json_decode($decryptedData, true);
 
-    // 使用解密后的用户名和密码进行数据库验证
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->execute(['username' => $decryptedUsername]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // 检查数据包中是否有用户名和密码
+    if (isset($dataPacket['username']) && isset($dataPacket['password'])) {
+        $decryptedUsername = $dataPacket['username'];
+        $decryptedPassword = $dataPacket['password'];
 
-    if ($user && $user['password'] === md5($decryptedPassword)) {
-        // 密码验证成功
-        echo json_encode(["success" => true]);
+        // 使用解密后的用户名进行数据库查询
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->execute(['username' => $decryptedUsername]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 验证用户名和密码
+        if ($user && $user['password'] === md5($decryptedPassword)) {
+            echo json_encode(["success" => true]);
+        } else {
+            echo json_encode(["success" => false, "error" => "Invalid username or password"]);
+        }
     } else {
-        // 密码错误
-        echo json_encode(["success" => false, "error" => "Invalid username or password"]);
+        echo json_encode(["success" => false, "error" => "Missing username or password"]);
     }
 } else {
-    echo json_encode(["success" => false, "error" => "Missing data"]);
+    echo json_encode(["success" => false, "error" => "No data received"]);
 }

@@ -14,13 +14,12 @@ function decryptAES($encryptedData) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 获取并解析 JSON 数据
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
+    // 获取 URL 查询参数
+    $encryptedData = isset($_POST['encryptedData']) ? $_POST['encryptedData'] : null;
 
-    if (isset($data['encryptedData'])) {
-        // 解密加密后的 JSON 数据包
-        $decryptedData = decryptAES($data['encryptedData']);
+    if ($encryptedData) {
+        // 解密加密后的数据
+        $decryptedData = decryptAES($encryptedData);
 
         // 将解密后的 JSON 数据解析为数组
         $formData = json_decode($decryptedData, true);
