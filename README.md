@@ -1,6 +1,5 @@
 # encrypt-labs
-> 说明：之前自己在学习前端加解密经常遇到加密解不了的情况；之后慢慢看师傅们的文章，也学到了很多绕过技术，于是写了个简单的靶场，为之后的师傅们铺路学习
-> 加密方式列出了我经常见的7种方式
+> 说明：之前自己在学习前端加解密经常遇到加密解不了的情况；之后慢慢看师傅们的文章，也学到了很多绕过技术，于是写了个简单的靶场，为之后的师傅们铺路学习,加密方式列出了我经常见的8种方式包含非对称加密、对称加密、加签以及禁止重放的测试场景，比如AES、DES、RSA，用于渗透测试加解密练习。希望可以帮助到最近在学习这块知识的师傅，靶场函数.很简单，和实战相比还是差的有点多，不过应该够入门了
 
 js代码做了混淆，感觉较难分析的可以使用easy.php进行练习
 
@@ -15,7 +14,7 @@ http://82.156.57.228:43899/easy.php （无混淆）
 
 Nginx+mysql+php8放在网站路径即可食用
 
-如果对你有帮助的话，来点🌟🌟⭐️，食用起来会更香！
+如果对你有帮助的话，来点🌟🌟🌟，食用起来会更香！
 
 
 配合其他的github项目和文章进行练习<br>
@@ -41,7 +40,7 @@ Nginx+mysql+php8放在网站路径即可食用
 
 ## 主要分为对称加密、非对称加密和加签的方式
 
-<img width="1502" alt="image" src="https://github.com/user-attachments/assets/f72feb26-03d2-423f-a9e2-6136a83698d1">
+<img width="1400" alt="image" src="https://github.com/user-attachments/assets/cab7b27b-793c-47cc-b7ae-9f318a40492f">
 
 ## 列举几个数据包中的图
 ### AES
@@ -57,7 +56,7 @@ Nginx+mysql+php8放在网站路径即可食用
 <img width="1155" alt="image" src="https://github.com/user-attachments/assets/c88b41f4-075b-4eae-8a1c-4b57a27c6370">
 
 ### 禁止重放
-<img width="1165" alt="image" src="https://github.com/user-attachments/assets/443ce3d9-11c8-4937-966a-eb91f6840606">
+<img width="1198" alt="image" src="https://github.com/user-attachments/assets/0a75135e-a197-47f3-bd34-858d27a5c19d">
 
 
 ## 🔯 Stars
