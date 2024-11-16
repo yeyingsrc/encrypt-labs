@@ -6,6 +6,8 @@
   <title>encrypt靶场</title>
   <script src="js/crypto-js.min.js"></script> <!-- 引入 CryptoJS 库 -->
   <script src="js/jsencrypt.min.js"></script> <!-- 引入 JSEncrypt 库 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.10.0/forge.min.js"></script>
+
 
 
   <link rel="stylesheet" href="css/index.css"> <!-- 引入本地的 CSS 文件 -->
@@ -133,7 +135,7 @@
       <button onclick="sendDataAesRsa('encrypt/aesrsa.php')">AES+Rsa加密</button>
       <button onclick="encryptAndSendDataDES('encrypt/des.php')">Des规律Key</button>
       <button onclick="sendDataWithNonce('encrypt/signdata.php')">明文加签</button>
-      <button onclick="sendDataWithSignatureRsa('encrypt/signdataRsa.php')">明文Rsa加签</button>
+      <button onclick="sendDataWithNonceServer('encrypt/signdataserver.php')">加签key在服务器端</button>
       <button onclick="sendLoginRequest('encrypt/norepeater.php')">禁止重放</button>
 
       <button onclick="closeModal()">取消</button>

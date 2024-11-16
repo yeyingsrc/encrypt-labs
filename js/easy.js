@@ -296,90 +296,115 @@ function sendDataWithNonce(url) {
 	closeModal();
 }
 
-function sendDataWithSignatureRsa(url) {
-	const publicKey = `
------BEGIN PUBLIC KEY-----
+async function sendDataWithNonceServer(url) {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const timestamp = Math.floor(Date.now() / 1000); // 当前时间戳
+
+    try {
+        // Step 1: 请求签名
+        const signResponse = await fetch(`${url}/../get-signature.php`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                timestamp: timestamp,
+            }),
+        });
+
+        // 检查签名请求响应状态
+        if (!signResponse.ok) {
+            console.error("获取签名失败:", signResponse.statusText);
+            alert("获取签名失败，请稍后重试。");
+            return;
+        }
+
+        const { signature } = await signResponse.json();
+
+        if (!signature) {
+            alert("签名获取失败，服务器未返回签名。");
+            return;
+        }
+
+        // Step 2: 发送数据和签名
+        const submitResponse = await fetch(`${url}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                timestamp: timestamp,
+                signature: signature,
+            }),
+        });
+
+        // 检查提交请求响应状态
+        if (!submitResponse.ok) {
+            console.error("数据提交失败:", submitResponse.statusText);
+            alert("提交数据失败，请稍后重试。");
+            return;
+        }
+
+        const data = await submitResponse.json();
+
+        if (data.success) {
+            alert("登录成功");
+            window.location.href = "success.html";
+        } else {
+            alert(data.error || "用户名或密码错误");
+        }
+    } catch (error) {
+        console.error("请求错误:", error);
+        alert("发生错误，请稍后重试。");
+    }
+}
+
+function generateRequestData() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const timestamp = Date.now();
+
+    const publicKey = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDRvA7giwinEkaTYllDYCkzujvi
 NH+up0XAKXQot8RixKGpB7nr8AdidEvuo+wVCxZwDK3hlcRGrrqt0Gxqwc11btlM
 DSj92Mr3xSaJcshZU8kfj325L8DRh9jpruphHBfh955ihvbednGAvOHOrz3Qy3Cb
 ocDbsNeCwNpRxwjIdQIDAQAB
------END PUBLIC KEY-----
-  `;
-	const username = document.getElementById("username")
-		.value;
-	const password = document.getElementById("password")
-		.value;
+-----END PUBLIC KEY-----`;
 
-	const nonce = Math.random()
-		.toString(36)
-		.substring(2);
-	const timestamp = Math.floor(Date.now() / 1000);
+    function rsaEncrypt(data, publicKey) {
+        const jsEncrypt = new JSEncrypt(); 
+        jsEncrypt.setPublicKey(publicKey);
+        const encrypted = jsEncrypt.encrypt(data.toString());
+        if (!encrypted) {
+            throw new Error("RSA encryption failed.");
+        }
+        return encrypted;
+    }
 
-	async function sendRequest() {
-		const dataToSend = {
-			username: username,
-			password: password,
-			nonce: nonce,
-			timestamp: timestamp
-		};
+    // Encrypt the timestamp
+    let encryptedTimestamp;
+    try {
+        encryptedTimestamp = rsaEncrypt(timestamp, publicKey);
+    } catch (error) {
+        console.error("Encryption error:", error);
+        return null;
+    }
 
-		try {
-			const response = await fetch(url, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(dataToSend)
-			});
+    const dataToSend = {
+        username: username,
+        password: password,
+        random: encryptedTimestamp // Replace timestamp with encrypted version
+    };
 
-			const responseData = await response.json();
-
-			if (responseData.success && responseData.signature) {
-				const dataToVerify = username + password + nonce + timestamp;
-
-				const signatureValid = verifySignature(dataToVerify, responseData.signature, publicKey);
-
-				if (signatureValid) {
-					alert("签名验证成功，登录成功");
-					window.location.href = "success.html";
-				} else {
-					alert("签名验证失败，数据可能被篡改");
-				}
-			} else {
-				alert(responseData.error || "用户名或密码错误");
-			}
-		} catch (error) {
-			console.error("请求错误:", error);
-			alert("请求失败，请检查网络连接");
-		}
-	}
-
-	sendRequest();
-
-	function verifySignature(data, signature, publicKey) {
-		const verifier = new JSEncrypt();
-		verifier.setPublicKey(publicKey);
-		return verifier.verify(data, signature, CryptoJS.SHA256);
-	}
-
-	closeModal();
+    return dataToSend;
 }
 
-function generateRequestData() {
-	const username = document.getElementById("username")
-		.value;
-	const password = document.getElementById("password")
-		.value;
-	const timestamp = Date.now();
-
-	const dataToSend = {
-		username: username,
-		password: password,
-		timestamp: timestamp
-	};
-
-	return dataToSend;
-}
 
 function sendLoginRequest(url) {
 	const dataToSend = generateRequestData();

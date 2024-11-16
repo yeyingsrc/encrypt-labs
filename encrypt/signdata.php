@@ -17,20 +17,11 @@ if (isset($data['username']) && isset($data['password']) && isset($data['nonce']
 
     // 检查时间戳是否在允许的时间范围内（例如 5 分钟内）
     $currentTimestamp = time();
-    if (abs($currentTimestamp - $timestamp) > 8) { // 8秒
+    if (abs($currentTimestamp - $timestamp) > 500) { // 8秒
         echo json_encode(["success" => false, "error" => "Request timeout"]);
         exit();
     }
 
-    // 检查 nonce 是否已经使用过
-    // 假设您有一个数据库或缓存表用于存储已使用的 nonce
-    // 这里用伪代码模拟检查 nonce
-    if (nonceExistsInDatabase($nonce)) {
-        echo json_encode(["success" => false, "error" => "Duplicate request detected"]);
-        exit();
-    } else {
-        storeNonceInDatabase($nonce); // 将新 nonce 存储到数据库，防止重复使用
-    }
 
     // 生成服务器端的签名
     $dataToSign = $username . $password . $nonce . $timestamp;
