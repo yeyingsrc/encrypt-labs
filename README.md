@@ -11,6 +11,10 @@ http://82.156.57.228:43899  (混淆)
 
 http://82.156.57.228:43899/easy.php （无混淆）
 
+## 食用方式:
+
+Nginx+mysql+php8放在网站路径即可食用
+
 Ta0ing师傅提供了docker版本
 ```
 git clone https://github.com/Ta0ing/encrypt-labs-docker.git
@@ -18,10 +22,6 @@ docker-compose up -d --build
 ```
 <img width="1326" alt="image" src="https://github.com/user-attachments/assets/c19d3edb-ad2c-4a51-9f52-c0bd384ffb67">
 <img width="1837" alt="image" src="https://github.com/user-attachments/assets/b73967bd-9106-486c-b2df-4614147806dc">
-
-## 食用方式:
-
-Nginx+mysql+php8放在网站路径即可食用
 
 如果对你有帮助的话，来点🌟🌟🌟，食用起来会更香！
 
