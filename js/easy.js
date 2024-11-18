@@ -303,7 +303,6 @@ async function sendDataWithNonceServer(url) {
     const timestamp = Math.floor(Date.now() / 1000); // 当前时间戳
 
     try {
-        // Step 1: 请求签名
         const signResponse = await fetch(`${url}/../get-signature.php`, {
             method: "POST",
             headers: {
@@ -315,8 +314,7 @@ async function sendDataWithNonceServer(url) {
                 timestamp: timestamp,
             }),
         });
-
-        // 检查签名请求响应状态
+	    closeModal();
         if (!signResponse.ok) {
             console.error("获取签名失败:", signResponse.statusText);
             alert("获取签名失败，请稍后重试。");
@@ -330,7 +328,6 @@ async function sendDataWithNonceServer(url) {
             return;
         }
 
-        // Step 2: 发送数据和签名
         const submitResponse = await fetch(`${url}`, {
             method: "POST",
             headers: {
@@ -344,7 +341,6 @@ async function sendDataWithNonceServer(url) {
             }),
         });
 
-        // 检查提交请求响应状态
         if (!submitResponse.ok) {
             console.error("数据提交失败:", submitResponse.statusText);
             alert("提交数据失败，请稍后重试。");
@@ -363,6 +359,7 @@ async function sendDataWithNonceServer(url) {
         console.error("请求错误:", error);
         alert("发生错误，请稍后重试。");
     }
+
 }
 
 function generateRequestData() {
