@@ -141,7 +141,7 @@
       <button onclick="closeModal()">取消</button>
     </div>
   </div>
-  <script src="js/easy.js"></script> <!-- 引入 JSEncrypt 库 -->
+  <script src="js/app.js"></script> <!-- 引入 JSEncrypt 库 -->
     <footer>
     本靶场由 <a href="https://github.com/SwagXz/encrypt-labs" target="_blank">Xz</a> 编写
   </footer>
