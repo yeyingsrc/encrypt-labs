@@ -5,10 +5,19 @@ js代码做了混淆，感觉较难分析的可以使用easy.php进行练习
 
 - 在线体验地址：
 
+默认密码：admin/123456
+
 http://82.156.57.228:43899  (混淆)
 
 http://82.156.57.228:43899/easy.php （无混淆）
 
+Ta0ing师傅提供了docker版本
+```
+git clone https://github.com/Ta0ing/encrypt-labs-docker.git
+docker-compose up -d --build
+```
+<img width="1326" alt="image" src="https://github.com/user-attachments/assets/c19d3edb-ad2c-4a51-9f52-c0bd384ffb67">
+<img width="1837" alt="image" src="https://github.com/user-attachments/assets/b73967bd-9106-486c-b2df-4614147806dc">
 
 ## 食用方式:
 
