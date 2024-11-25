@@ -39,9 +39,13 @@ docker-compose up -d --build
 
 **文章**
 
-自己freebuf写过一个靶场通关的，但需要会员，也有其他有师傅参考原文自己复现出来的可以看看
+自己写的通关记录：
 
-[加密对抗靶场enctypt-labs通关](https://mp.weixin.qq.com/s/ZgD7qAQAsNlZgLtdZVCoFw)
+[加密对抗靶场enctypt-labs通关](https://www.freebuf.com/articles/web/415434.html) 
+
+其他师傅写的文章：
+
+[enctypt-labs靶场通关](https://mp.weixin.qq.com/s/ZgD7qAQAsNlZgLtdZVCoFw)
 
 [渗透测试高级技巧：分析验签与前端加密（一）](https://mp.weixin.qq.com/s?__biz=Mzk0MTM4NzIxMQ==&mid=2247511526&idx=1&sn=c3a661b71ad9e9108b822cec461d34e6&chksm=c2d1d142f5a65854cd0ac07ec38d46c514f472734923fad4ce8bb85579b5a056447abcb545da&scene=21#wechat_redirect)
 
