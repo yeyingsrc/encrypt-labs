@@ -75,6 +75,10 @@ docker-compose up -d --build
 ### 禁止重放
 <img width="1198" alt="image" src="https://github.com/user-attachments/assets/0a75135e-a197-47f3-bd34-858d27a5c19d">
 
+### ☕ 请作者喝杯冰阔乐
+<img width="450" alt="image" src="https://github.com/user-attachments/assets/a4084580-79c6-403b-a397-3651bcfcc7ce">
+
+
 
 ## 🔯 Stars
 [![Stargazers over time](https://starchart.cc/SwagXz/encrypt-labs.svg?variant=adaptive)](https://starchart.cc/SwagXz/encrypt-labs)
