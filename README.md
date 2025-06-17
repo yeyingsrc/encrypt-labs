@@ -76,7 +76,7 @@ docker-compose up -d --build
 <img width="1198" alt="image" src="https://github.com/user-attachments/assets/0a75135e-a197-47f3-bd34-858d27a5c19d">
 
 ### ☕ 请作者喝杯冰阔乐
-<img width="450" alt="image" src="https://github.com/user-attachments/assets/a4084580-79c6-403b-a397-3651bcfcc7ce">
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/a4084580-79c6-403b-a397-3651bcfcc7ce">
 
 
 
